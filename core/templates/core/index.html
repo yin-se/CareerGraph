@@ -1,0 +1,154 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}CareerGraph - Discover Your Career Path{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Left Panel - University Selection -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-university me-2"></i>
+                    Start Your Journey
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">
+                    Select your university to explore career paths of alumni with similar backgrounds.
+                </p>
+                
+                <!-- University Search -->
+                <div class="mb-3">
+                    <label for="universitySearch" class="form-label">Search Universities</label>
+                    <input type="text" class="form-control" id="universitySearch" 
+                           placeholder="Type university name..." onkeyup="searchUniversities()">
+                </div>
+                
+                <!-- Popular Universities -->
+                <div class="mb-3">
+                    <h6>Popular Universities</h6>
+                    <div id="popularUniversities" class="list-group">
+                        <div class="text-center p-3">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div>Loading popular universities...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Selected Path -->
+                <div id="selectedPath" class="mb-3" style="display: none;">
+                    <h6>Your Selected Path</h6>
+                    <div id="pathBreadcrumb" class="badge-container">
+                        <!-- Path breadcrumbs will be inserted here -->
+                    </div>
+                    <button class="btn btn-outline-secondary btn-sm mt-2" onclick="clearPath()">
+                        <i class="fas fa-times me-1"></i>Clear Path
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Middle Panel - Career Path Exploration -->
+    <div class="col-lg-5">
+        <div class="card h-100">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-route me-2"></i>
+                    Career Path Explorer
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="pathExplorer">
+                    <div class="text-center p-5 text-muted">
+                        <i class="fas fa-arrow-left fa-2x mb-3"></i>
+                        <h6>Select a university to start exploring career paths</h6>
+                        <p>Choose your starting point from the universities on the left to see possible career trajectories.</p>
+                    </div>
+                </div>
+                
+                <!-- Next Steps -->
+                <div id="nextSteps" style="display: none;">
+                    <h6 class="mb-3">Possible Next Steps</h6>
+                    <div id="nextStepsList" class="row">
+                        <!-- Next steps will be populated here -->
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="findProfiles()" id="findProfilesBtn">
+                            <i class="fas fa-users me-1"></i>
+                            Find Matching Profiles
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Panel - Results -->
+    <div class="col-lg-3">
+        <div class="card h-100">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-users me-2"></i>
+                    Matching Profiles
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="profileResults">
+                    <div class="text-center p-3 text-muted">
+                        <i class="fas fa-search fa-2x mb-3"></i>
+                        <h6>Build your path to find profiles</h6>
+                        <p>As you select career steps, we'll show you LinkedIn profiles of people who followed similar paths.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Modal -->
+<div class="modal fade" id="statisticsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CareerGraph Statistics</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="statisticsContent">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Profile Detail Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Profile Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="profileContent">
+                    <!-- Profile details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'core/js/career-explorer.js' %}"></script>
+{% endblock %}
