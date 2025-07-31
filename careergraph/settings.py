@@ -26,7 +26,13 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-w6_$bk@gg%vx-9%zq&$pq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'careersgraph.com',
+    'www.careersgraph.com',
+    '.careersgraph.com',  # Allow all subdomains
+]
 
 
 # Application definition

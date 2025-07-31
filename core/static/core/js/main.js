@@ -1,4 +1,4 @@
-// CareerGraph Main JavaScript
+// CareersGraph Main JavaScript
 
 // Global variables
 let selectedPath = [];

@@ -1,4 +1,4 @@
-# CareerGraph
+# CareersGraph
 
 A Django web application that analyzes LinkedIn career paths to help users explore career trajectories based on educational backgrounds and professional experiences.
 
@@ -46,8 +46,8 @@ A Django web application that analyzes LinkedIn career paths to help users explo
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd CareerGraph
+   git clone https://github.com/yin-se/CareersGraph.git
+   cd CareersGraph
    ```
 
 2. **Create virtual environment**

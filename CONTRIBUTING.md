@@ -1,14 +1,14 @@
-# Contributing to CareerGraph
+# Contributing to CareersGraph
 
-Thank you for your interest in contributing to CareerGraph! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to CareersGraph! This document provides guidelines for contributing to the project.
 
 ## 🚀 Getting Started
 
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/yourusername/CareerGraph.git
-   cd CareerGraph
+   git clone https://github.com/yourusername/CareersGraph.git
+   cd CareersGraph
    ```
 3. **Set up the development environment** following the README.md instructions
 4. **Create a new branch** for your feature or bug fix:
@@ -126,4 +126,4 @@ We use these labels for issues and PRs:
 - `frontend`: Frontend-related changes
 - `backend`: Backend-related changes
 
-Thank you for contributing to CareerGraph! 🚀
+Thank you for contributing to CareersGraph! 🚀
