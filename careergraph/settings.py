@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     'careersgraph.com',
     'www.careersgraph.com',
     '.careersgraph.com',  # Allow all subdomains
+    '.railway.app',  # Allow all Railway subdomains
 ]
 
 # Add Railway domains if they exist
