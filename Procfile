@@ -1,3 +1,2 @@
 web: gunicorn careergraph.wsgi --log-file -
-worker: celery -A careergraph worker --loglevel=info
 release: python manage.py migrate && python manage.py collectstatic --noinput
