@@ -7,7 +7,7 @@ Thank you for your interest in contributing to CareersGraph! This document provi
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/yourusername/CareersGraph.git
+   git clone https://github.com/yin-se/CareersGraph.git
    cd CareersGraph
    ```
 3. **Set up the development environment** following the README.md instructions

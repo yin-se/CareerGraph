@@ -26,6 +26,10 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-w6_$bk@gg%vx-9%zq&$pq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
+# Get Railway domain from environment
+RAILWAY_STATIC_URL = config('RAILWAY_STATIC_URL', default='')
+RAILWAY_PUBLIC_DOMAIN = config('RAILWAY_PUBLIC_DOMAIN', default='')
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -33,6 +37,15 @@ ALLOWED_HOSTS = [
     'www.careersgraph.com',
     '.careersgraph.com',  # Allow all subdomains
 ]
+
+# Add Railway domains if they exist
+if RAILWAY_STATIC_URL:
+    import re
+    railway_domain = re.sub(r'^https?://', '', RAILWAY_STATIC_URL)
+    ALLOWED_HOSTS.append(railway_domain)
+
+if RAILWAY_PUBLIC_DOMAIN:
+    ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
 
 
 # Application definition
@@ -87,16 +100,26 @@ WSGI_APPLICATION = "careergraph.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DATABASE_NAME', default='careergraph'),
-        "USER": config('DATABASE_USER', default='postgres'),
-        "PASSWORD": config('DATABASE_PASSWORD', default='password'),
-        "HOST": config('DATABASE_HOST', default='localhost'),
-        "PORT": config('DATABASE_PORT', default='5432'),
+import dj_database_url
+
+# Railway provides DATABASE_URL, fallback to individual vars
+DATABASE_URL = config('DATABASE_URL', default=None)
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config('DATABASE_NAME', default='careergraph'),
+            "USER": config('DATABASE_USER', default='postgres'),
+            "PASSWORD": config('DATABASE_PASSWORD', default='password'),
+            "HOST": config('DATABASE_HOST', default='localhost'),
+            "PORT": config('DATABASE_PORT', default='5432'),
+        }
+    }
 
 
 # Password validation
@@ -160,6 +183,8 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://careersgraph.com",
+    "https://www.careersgraph.com",
 ]
 
 # Celery Configuration
